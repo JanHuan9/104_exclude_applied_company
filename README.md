@@ -1,4 +1,4 @@
-# 104_exclude_applied_company
+# 104_exclude_applied_company 排除104上已經應徵過的公司
 open project in Selenium IDE
 execute "appliedCompany" test and get arrary in console first.
 then paste arrary in "104" test.
