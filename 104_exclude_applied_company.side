@@ -1,0 +1,165 @@
+{
+  "id": "e65e69a6-1308-4699-9080-cdc3d497d6b7",
+  "version": "2.0",
+  "name": "search test",
+  "url": "https://www.104.com.tw/jobs/search/?ro=1&isnew=30&kwop=1&keyword=%E5%B7%A5%E7%A8%8B%E5%B8%AB&area=6001001000&order=15&asc=0&page=1&mode=s&jobsource=n_my104_search",
+  "tests": [{
+    "id": "5e2c66e2-5c1b-4266-914e-edd47a0aaf28",
+    "name": "104",
+    "commands": [{
+      "id": "326edfb1-f460-4611-8914-ac0c2419e343",
+      "comment": "please paste 104 search result",
+      "command": "open",
+      "target": "https://www.104.com.tw/jobs/search/?ro=1&isnew=30&kwop=1&keyword=%E5%B7%A5%E7%A8%8B%E5%B8%AB&area=6001001000&order=15&asc=0&page=1&mode=s&jobsource=n_my104_search",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a1bd0b1e-a669-44a7-a2ef-0b3affd937a4",
+      "comment": "please return \"appliedCompany\" execute result in console",
+      "command": "executeScript",
+      "target": "return [\"104\", \"1111\"]",
+      "targets": [],
+      "value": "companlyArrs"
+    }, {
+      "id": "4bbfe74a-24f1-4cc8-9279-224239a951cf",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return 1",
+      "targets": [],
+      "value": "currentpage"
+    }, {
+      "id": "c2dbf141-d77c-4414-b7e4-357c51f67e7e",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return document.getElementsByClassName(\"gtm-paging-top\")[0].length;",
+      "targets": [],
+      "value": "totalpage"
+    }, {
+      "id": "3f3a2898-21a6-430a-9cd0-dfd0dd311d70",
+      "comment": "",
+      "command": "echo",
+      "target": "totalpage: ${totalpage}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "426879a4-5463-4fdf-b344-e0b4f9bf8787",
+      "comment": "",
+      "command": "while",
+      "target": "(${totalpage} - ${currentpage} >= 0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0a27a388-88e8-4d29-8758-2d4dae45c8a8",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,99999)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c307ce69-fe7b-4c1e-965e-fb82d8ced5be",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return (${currentpage} + 1)",
+      "targets": [],
+      "value": "currentpage"
+    }, {
+      "id": "f687aaff-1a6c-41e6-9ada-bc95ab4c7238",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e0b93158-eaa4-4ab6-bd4e-f88cd16aa2b5",
+      "comment": "",
+      "command": "executeScript",
+      "target": "function getJobArr(companlyArr) { \tvar jobArr = document.getElementsByClassName(\"js-job-item\"); \tvar bar = document.getElementsByClassName(\"b-txt--center\"); \tvar jobnode = document.createElement('article'); \tvar garbage = document.createElement('article'); \tArray.prototype.slice.call(jobArr).forEach(function(job) { \t\tvar result = companlyArr.filter(com => com == job.dataset.custName); \t\tif (result.length == 0) { \t\t\tjobnode.appendChild(job); \t\t}else { \t\t\tgarbage.appendChild(job); \t\t} \t}); \tArray.prototype.slice.call(bar).forEach(function(barcontent) { \t\t\tgarbage.appendChild(barcontent); \t}); \tdocument.getElementById(\"js-job-list\").appendChild(jobnode); } getJobArr(${companlyArrs})",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "f982a0a6-1f3d-47f2-8dea-b9a7cf549f62",
+    "name": "appliedCompany",
+    "commands": [{
+      "id": "e199c681-4430-470f-af4c-5eb79a4f82bf",
+      "comment": "",
+      "command": "open",
+      "target": "https://pda.104.com.tw/my104/applyRecord/index",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1c8ee31c-a3eb-4b2f-9554-a7a161908df4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "945x1040",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d0670604-4b58-4178-82ae-54640500dd08",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return []",
+      "targets": [],
+      "value": "companyArrs"
+    }, {
+      "id": "f5c1f3fd-0122-4eae-bdc2-a2fb37ce4628",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "linkText=下一頁 >",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f411a15e-ed3f-44d9-a394-ddc797772642",
+      "comment": "",
+      "command": "while",
+      "target": "(function(){     try {return !(document.querySelectorAll(\".txt_gray.hidden\")[0].textContent == \"|下一頁 >\")} \t\tcatch(e) {return document.querySelectorAll(\"#paging .txt_gray a\")[0].textContent == \"< 上一頁\"} }())",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bcfce535-cd43-46c1-9844-3d3b1f792d55",
+      "comment": "",
+      "command": "executeScript",
+      "target": "function getComArr(companyArr){ \tvar companyRawArr = document.querySelectorAll(\".joblist_cont .compname_5\"); \tArray.prototype.slice.call(companyRawArr).forEach(function(com) {     companyArr.push(com.textContent); \t}); \tconsole.log(companyArr); \treturn companyArr }; return getComArr(${companyArrs})",
+      "targets": [],
+      "value": "companyArrs"
+    }, {
+      "id": "6e9a12ac-f098-4031-bb25-698ebc5b51b6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=下一頁 >",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6f6fb2d5-0025-4b89-aa11-cc7d99a64846",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "89a59f64-bf42-4406-a557-a08133b23d0e",
+      "comment": "execute last getComArr",
+      "command": "executeScript",
+      "target": "function getComArr(companyArr){ \tvar companyRawArr = document.querySelectorAll(\".joblist_cont .compname_5\"); \tArray.prototype.slice.call(companyRawArr).forEach(function(com) {     companyArr.push(com.textContent); \t}); \tconsole.log(companyArr); \treturn companyArr }; return getComArr(${companyArrs})",
+      "targets": [],
+      "value": "companyArrs"
+    }, {
+      "id": "b249069a-b5c5-41f8-a59c-932acddb6c26",
+      "comment": "",
+      "command": "executeScript",
+      "target": "console.log(${companyArrs})",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "41979758-bd71-48d5-8a44-31ef2b9ec714",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["https://www.google.com/", "https://www.104.com.tw/jobs/search/?ro=1&isnew=3&kwop=1&keyword=%E6%B8%AC%E8%A9%A6&area=6001001000&order=15&asc=0&page=1&jobexp=1%2C3&mode=s&jobsource=n_my104_search", "https://pda.104.com.tw/my104/applyRecord/index"],
+  "plugins": []
+}
